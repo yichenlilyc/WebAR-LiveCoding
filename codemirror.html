@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Test AR</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="./dist/codemirror.bundle.js" async></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="js/aframe-component.js"></script>
+  <script src="js/aframe-playground.js"></script>
+
+  <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css" async defer>
+  <style>
+    .remote-caret {
+      position: relative;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      margin-left: -1px;
+      margin-right: -1px;
+      box-sizing: border-box;
+    }
+
+    .remote-caret>div {
+      position: absolute;
+      top: -1.05em;
+      left: -1px;
+      font-size: .6em;
+      background-color: rgb(250, 129, 0);
+      font-family: serif;
+      font-style: normal;
+      font-weight: normal;
+      line-height: normal;
+      user-select: none;
+      color: white;
+      padding-left: 2px;
+      padding-right: 2px;
+      z-index: 3;
+      transition: opacity .3s ease-in-out;
+    }
+
+    .remote-caret.hide-name>div {
+      transition-delay: .7s;
+      opacity: 0;
+    }
+
+    .remote-caret:hover>div {
+      opacity: 1;
+      transition-delay: 0s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="embededScene">
+
+    <a-scene id="scene" embedded playground arjs>
+      <a-marker preset="hiro" raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;"
+        id="hiro">
+
+        <a-entity id="compA"></a-entity>
+      </a-marker>
+
+      <a-marker preset="kanji" raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;"
+        id="kanji">
+
+        <a-entity id="compB"></a-entity>
+      </a-marker>
+
+      <a-entity camera id="camera"></a-entity>
+    </a-scene>
+  </div>
+
+  <div class="editor" id="editorB"></div>
+</body>
+
+</html>
